@@ -1,13 +1,14 @@
-import Timer from '../Timer/Timer';
+import Timer from '../Timer/Timer'
 
 import styles from './Footer.module.scss'
 
 const Footer = () => {
-    return (
-        <div className={styles.footer}>
-            <Timer/>
-        </div>
-    )
+	return (
+		<div className={styles.footer}>
+			<p style={{ color: 'red' }}>Hello World test</p>
+			<Timer />
+		</div>
+	)
 }
 
-export default Footer;
+export default Footer
