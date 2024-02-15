@@ -1,0 +1,28 @@
+.buttonAddCard {
+	// border: 1px solid white;
+	display: flex;
+	position: relative;
+	margin: 25px;
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	background-color: white;
+
+	.verticalLine {
+		position: absolute;
+		background-color: black;
+		width: 20px;
+		height: 80%;
+		top: 10%;
+		left: 40%;
+	}
+
+	.horizontalLine {
+		position: absolute;
+		background-color: black;
+		width: 80%;
+		height: 20px;
+		top: 40%;
+		left: 10%;
+	}
+}
