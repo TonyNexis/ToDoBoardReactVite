@@ -1,28 +1,42 @@
-.buttonAddCard {
-	// border: 1px solid white;
-	display: flex;
-	position: relative;
-	margin: 25px;
-	height: 100px;
-	width: 100px;
-	border-radius: 50%;
-	background-color: white;
+@import './../../variables.scss';
+@import './../../mixins.scss';
 
-	.verticalLine {
-		position: absolute;
-		background-color: black;
-		width: 20px;
-		height: 80%;
-		top: 10%;
-		left: 40%;
+.cardButton {
+	@include card;
+
+	&:hover .buttonAddCard {
+		box-shadow: 0px 0px 20px #2ea19b76;
+		// transition: box-shadow 0.3s ease;
 	}
 
-	.horizontalLine {
-		position: absolute;
-		background-color: black;
-		width: 80%;
-		height: 20px;
-		top: 40%;
-		left: 10%;
+	.buttonAddCard {
+		// border: 1px solid white;
+		display: flex;
+		position: relative;
+		margin: 15px;
+		height: 150px;
+		width: 150px;
+		border-radius: 50%;
+		background-color: $background_color;
+		box-shadow: none;
+		transition: box-shadow 0.3s ease;
+
+		.verticalLine {
+			position: absolute;
+			background-color: $primary_color;
+			width: 40px;
+			height: 80%;
+			top: 10%;
+			left: 37%;
+		}
+
+		.horizontalLine {
+			position: absolute;
+			background-color: $primary_color;
+			width: 80%;
+			height: 40px;
+			top: 37%;
+			left: 10%;
+		}
 	}
 }

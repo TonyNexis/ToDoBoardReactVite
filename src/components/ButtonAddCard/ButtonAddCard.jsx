@@ -6,9 +6,11 @@ const ButtonAddCard = () => {
 	}
 
 	return (
-		<div onClick={onButtonCard} className={styles.buttonAddCard}>
-			<s className={styles.verticalLine}></s>
-			<s className={styles.horizontalLine}></s>
+		<div onClick={onButtonCard} className={styles.cardButton}>
+			<div className={styles.buttonAddCard}>
+				<s className={styles.verticalLine}></s>
+				<s className={styles.horizontalLine}></s>
+			</div>
 		</div>
 	)
 }
