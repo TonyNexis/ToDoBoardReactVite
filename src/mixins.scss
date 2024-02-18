@@ -1,13 +1,13 @@
 @import './variables.scss';
 
 @mixin card {
-	width: 200px;
-	height: 300px;
+	width: 300px;
+	height: 400px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	border-radius: 15px;
-	margin: 50px;
+	margin: 50px 25px 50px 50px;
 	background-color: $primary_color;
 	box-shadow: 0px 0px 20px #2ea19b76;
 	transition: box-shadow 0.3s ease;

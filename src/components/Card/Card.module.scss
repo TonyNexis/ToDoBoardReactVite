@@ -1,0 +1,32 @@
+@import './../../variables.scss';
+@import './../../mixins.scss';
+
+.card {
+    display: flex;
+    flex-direction: column;
+    @include card;
+
+    .cardBlock {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 10px;
+
+        .ticker {
+            margin: 5px;
+            padding: 3px;
+            background-color: yellow;
+            border-radius: 10px;
+            display: inline-block;
+       }
+
+       .text {
+            margin: 5px;
+            padding: 3px;
+            color: whitesmoke;
+            
+       }
+    }
+
+
+}

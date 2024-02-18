@@ -1,11 +1,13 @@
-import Timer from '../Timer/Timer'
+import ButtonAddCardFooter from '../ButtonAddCardFooter/ButtonAddCardFooter'
+import Clock from './../Clock/Clock'
 
 import styles from './Footer.module.scss'
 
 const Footer = () => {
 	return (
 		<div className={styles.footer}>
-			<Timer />
+			<ButtonAddCardFooter/>
+			<Clock />
 		</div>
 	)
 }

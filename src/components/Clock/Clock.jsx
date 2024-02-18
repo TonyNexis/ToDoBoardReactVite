@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 
-import styles from './Timer.module.scss'
+import styles from './Clock.module.scss'
 
-const Timer = () => {
+const Clock = () => {
 	const [currentTime, setCurrentTime] = useState(new Date())
 
 	useEffect(() => {
@@ -20,4 +20,4 @@ const Timer = () => {
 	return <div className={styles.timer}>{hours}:{minutes}:{seconds}</div>
 }
 
-export default Timer
+export default Clock
