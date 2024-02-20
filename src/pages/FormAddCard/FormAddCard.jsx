@@ -1,13 +1,11 @@
-import { useForm } from "react-hook-form";
-import styles from './FormAddCard.scss';
-
+import styles from './FormAddCard.module.scss'
 
 const FormAddCard = () => {
-    return (
-        <form action="">
-            
-        </form>
-    )
+	return (
+		<div className={styles.addCardFormWrapper}>
+			<form className={styles.addCardForm} action=''></form>
+		</div>
+	)
 }
 
-export default FormAddCard;
+export default FormAddCard
