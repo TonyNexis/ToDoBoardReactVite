@@ -23,7 +23,7 @@ const FormAddCard = () => {
 					{...register('example')}
 				/>
 				<input
-					className={styles.inputs}
+					className={`${styles.inputs} ${styles.inputComment}`}
 					placeholder='Comment'
 					{...register('exampleRequired', { required: true })}
 				/>
