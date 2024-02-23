@@ -22,7 +22,8 @@ const FormAddCard = () => {
 					placeholder='ToDo'
 					{...register('example')}
 				/>
-				<input
+				<textarea
+					rows={2}
 					className={`${styles.inputs} ${styles.inputComment}`}
 					placeholder='Comment'
 					{...register('exampleRequired', { required: true })}

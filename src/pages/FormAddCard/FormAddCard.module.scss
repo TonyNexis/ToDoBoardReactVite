@@ -51,9 +51,8 @@
 		}
 
 		.inputComment {
-			height: 60px;
-			overflow-y: auto;
-			word-wrap: break-word;
+			height: 70px;
+			resize: none;
 		}
 
 		.submitButton {
