@@ -13,33 +13,60 @@
 	align-items: center;
 	z-index: 10;
 
+	@keyframes openModal {
+		from {
+		  opacity: 0;
+		  transform: scale(0.8);
+		}
+		to {
+		  opacity: 1;
+		  transform: scale(1);
+		}
+	  }
+
 	.addCardForm {
-		position: relative;
+		position: fixed;
 		align-items: center;
 		display: flex;
 		width: 500px;
-		height: 400px;
+		height: 600px;
 		display: flex;
 		flex-direction: column;
-		// justify-content: center;
 		border-radius: 15px;
 		background-color: $primary_color;
 		box-shadow: 0px 0px 20px #2ea19b76;
+		animation-duration: 0.3s;
+  		animation-fill-mode: forwards;
+		animation-name: openModal;
+
+		.closeButton {
+			fill: #2ea19c;
+			margin: 15px;
+			position: absolute;
+			right: 0;
+			transition: fill 0.5s ease, filter 0.5s ease;
+
+			&:hover {
+				fill: black;
+				filter: drop-shadow(0px 0px 5px #2ea19bc3);
+			}
+		}
 
 		.mainText {
 			color: #2ea19c;
 			font-size: 23px;
 			font-weight: 600;
-			margin-top: 40px;
+			margin: 40px 10px 40px 10px;
 		}
 
 		.inputs {
 			width: 400px;
 			height: 30px;
 			font-size: 18px;
-			padding: 5px;
-			margin: 10px 10px 25px 10px;
+			padding: 10px;
+			margin: 0px 10px 40px 10px;
 			border: none;
+			border-radius: 10px;
 			background-color: $background_color;
 			color: whitesmoke;
 			transition: box-shadow 0.3s ease;
@@ -51,7 +78,7 @@
 		}
 
 		.inputComment {
-			height: 70px;
+			height: 100px;
 			resize: none;
 		}
 
@@ -71,6 +98,13 @@
 			&:hover {
 				box-shadow: 0px 0px 40px #2ea19b76;
 			}
+		}
+
+		.errorMessage {
+			padding: 5px;
+			margin: 0px 10px 40px 10px;
+			height: 21px;
+			color: #2ea19c;
 		}
 	}
 }

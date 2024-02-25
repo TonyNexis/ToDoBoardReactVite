@@ -1,12 +1,16 @@
+import { useDispatch } from 'react-redux'
+import { openModalCardAdd } from './../../redux/modalCardAddSlice.js'
 import styles from './ButtonAddCardFooter.module.scss'
 
-const click = () => {
-    console.log('click')
-}
-
 const ButtonAddCardFooter = () => {
+	const dispatch = useDispatch();
+
+	const onButtonCard = () => {
+		dispatch(openModalCardAdd())
+	}
+
 	return (
-		<button onClick={click} className={styles.ButtonAddCardFooter}>
+		<button onClick={onButtonCard} className={styles.ButtonAddCardFooter}>
 			<div className={styles.buttonAddCard}>
 				<s className={styles.verticalLine}></s>
 				<s className={styles.horizontalLine}></s>
