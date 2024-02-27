@@ -82,6 +82,35 @@
 			resize: none;
 		}
 
+		.dateWrapper {
+			margin: 0px 10px 20px 10px;
+			color: whitesmoke;
+		}
+
+		.statusRadioWrapper {
+			margin: 0px 10px 20px 10px;
+			padding: 10px 10px 10px 0px;
+			border-radius: 15px;
+			color: #2ea19c;
+			background-color: $background_color;
+
+			.radioLabelStatus {
+				background-color: #191d24;
+				padding: 10px 10px 10px 20px;
+				margin: 10px 0px 10px 0;
+				border-radius: 15px 0px 0px 15px;
+			}
+
+			& > * {
+				margin: 10px;
+				padding: 10px 0px 10px 0px;
+
+				&:checked + .statusRadio {
+					color: red;
+				}
+			}
+		}
+
 		.submitButton {
 			width: 130px;
 			height: 40px;
