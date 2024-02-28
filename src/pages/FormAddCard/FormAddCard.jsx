@@ -1,5 +1,9 @@
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import dayjs from 'dayjs'
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { closeModalCardAdd } from '../../redux/modalCardAddSlice'
 import styles from './FormAddCard.module.scss'
@@ -10,6 +14,7 @@ const FormAddCard = () => {
 		handleSubmit,
 		watch,
 		formState: { errors },
+		control,
 	} = useForm()
 
 	const dispatch = useDispatch()
@@ -38,7 +43,10 @@ const FormAddCard = () => {
 
 	const onSubmit = (data, e) => {
 		e.stopPropagation()
-		console.log('Data from card form==>', data)
+
+		const formattedDate = dayjs(data.date).format('MM/DD/YYYY HH:mm')
+
+		console.log('Data from card form==>', { ...data, date: formattedDate })
 	}
 
 	// console.log(watch('example'))
@@ -102,12 +110,6 @@ const FormAddCard = () => {
 					placeholder='Comment'
 					{...register('comment', { maxLength: 150 })}
 				/>
-				<div className={styles.dateWrapper}>
-					<label>Date:</label>
-					{/* <ReactDatePicker
-				dateFormat="dd/MM/yyyy"
-				/> */}
-				</div>
 				<div className={styles.statusRadioWrapper}>
 					<span className={styles.radioLabelStatus}>Status:</span>
 					<label className={styles.statusRadio}>
@@ -141,6 +143,23 @@ const FormAddCard = () => {
 						<span className={styles.radioText}>Normal</span>
 					</label>
 				</div>
+				<LocalizationProvider dateAdapter={AdapterDayjs}>
+					<Controller
+						name='date'
+						control={control}
+						defaultValue={null}
+						render={({ field }) => (
+							<DateTimePicker
+								className={`${styles.dateTimePicker}`}
+								label='Choose date'
+								value={field.value}
+								onChange={field.onChange}
+								textField={props => <input {...props} />}
+								ampm={false}
+							/>
+						)}
+					/>
+				</LocalizationProvider>
 				<span className={styles.errorMessage}>{errorMessage}</span>
 
 				<button className={styles.submitButton}>Create</button>
