@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { closeModalCardAdd } from '../../redux/modalCardAddSlice'
@@ -16,6 +17,20 @@ const FormAddCard = () => {
 	const onCloseModal = () => {
 		dispatch(closeModalCardAdd())
 	}
+
+	useEffect(() => {
+		const handleKeyDown = e => {
+			if (e.key === 'Escape') {
+				onCloseModal()
+			}
+		}
+
+		document.addEventListener('keydown', handleKeyDown)
+
+		return () => {
+			document.removeEventListener('keydown', handleKeyDown)
+		}
+	}, [])
 
 	const handleFormClick = e => {
 		e.stopPropagation()
@@ -94,16 +109,15 @@ const FormAddCard = () => {
 				/> */}
 				</div>
 				<div className={styles.statusRadioWrapper}>
-					<label className={styles.radioLabelStatus}>Status:</label>
-					<label>
+					<span className={styles.radioLabelStatus}>Status:</span>
+					<label className={styles.statusRadio}>
 						<input
-							className={styles.statusRadio}
 							type='radio'
 							name='status'
 							value='Hot'
 							{...register('status')}
 						/>
-						Hot
+						<span className={styles.radioText}>Hot</span>
 					</label>
 					<label>
 						<input
@@ -113,7 +127,7 @@ const FormAddCard = () => {
 							value='Important'
 							{...register('status')}
 						/>
-						Important
+						<span className={styles.radioText}>Important</span>
 					</label>
 					<label>
 						<input
@@ -124,7 +138,7 @@ const FormAddCard = () => {
 							value='Normal'
 							{...register('status')}
 						/>
-						Normal
+						<span className={styles.radioText}>Normal</span>
 					</label>
 				</div>
 				<span className={styles.errorMessage}>{errorMessage}</span>
