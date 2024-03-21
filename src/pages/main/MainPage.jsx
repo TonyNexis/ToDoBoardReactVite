@@ -6,6 +6,7 @@ import FormAddCard from './../FormAddCard/FormAddCard'
 
 import styles from './MainPage.module.scss'
 
+
 const MainPage = () => {
 
 	const isModalOpen = useSelector((state) => state.cardAdd.modalCardAddIsOpen);
