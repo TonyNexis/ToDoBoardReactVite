@@ -28,7 +28,7 @@ const MainPage = () => {
 				{/* <Card /> */}
 				{dataToDo &&
 					dataToDo.map(item => (
-						<Card key={item.id} id={item.id} title={item.title} comment={item.comment} />
+						<Card key={item.id} id={item.id} date={item.date} status={item.status} title={item.title} comment={item.comment} />
 					))}
 				<ButtonAddCard />
 			</div>
