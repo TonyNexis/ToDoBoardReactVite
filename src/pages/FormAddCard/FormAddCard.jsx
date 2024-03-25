@@ -6,6 +6,8 @@ import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { closeModalCardAdd } from '../../redux/modalCardAddSlice'
+import { sendData } from '../../redux/dataSlice'
+import { v4 as uuidv4 } from 'uuid';
 import styles from './FormAddCard.module.scss'
 
 const FormAddCard = () => {
@@ -46,10 +48,13 @@ const FormAddCard = () => {
 
 		const formattedDate = dayjs(data.date).format('MM/DD/YYYY HH:mm')
 
-		console.log('Data from card form==>', { ...data, date: formattedDate })
+		const dataCard = {...data, date: formattedDate, id: uuidv4()}
+
+		dispatch(sendData(dataCard))
+
+		console.log('Data from card form==>', dataCard)
 	}
 
-	// console.log(watch('example'))
 
 	let errorMessage
 
@@ -102,7 +107,7 @@ const FormAddCard = () => {
 				<input
 					className={styles.inputs}
 					placeholder='ToDo'
-					{...register('todo', { maxLength: 61, required: true })}
+					{...register('title', { maxLength: 61, required: true })}
 				/>
 				<textarea
 					rows={3}

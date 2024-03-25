@@ -6,11 +6,35 @@ export const fetchData = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const response = await axios.get('./../../db.json');
-            return response.data.todo;
+            if (response.status === 200) {
+              return response.data.todo;
+          } else {
+              return rejectWithValue("File not found");
+          }
         } catch (error) {
             return rejectWithValue(error.message);
         }
     }
+);
+
+export const sendData = createAsyncThunk(
+  'data/sendData',
+  async (formData, { rejectWithValue }) => {
+    try {
+      const response = await axios.put('./../../db.json', formData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      if (response.status === 200) {
+        return response.data.todo;
+      } else {
+        return rejectWithValue('File not found');
+      }
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
 );
 
 const dataSlice = createSlice({
@@ -34,6 +58,16 @@ const dataSlice = createSlice({
           })
           .addCase(fetchData.rejected, (state, action) => {
             state.loading = false;
+            state.error = action.payload;
+          })
+          .addCase(sendData.pending, state => {
+            state.sending = true;
+            state.error = null;
+          })
+          .addCase(sendData.fulfilled, state => {
+            state.sending = false;
+          })
+          .addCase(sendData.rejected, (state, action) => {
             state.error = action.payload;
           });
       },

@@ -22,4 +22,11 @@ body {
 		margin: auto;
 		max-width: 1520px;
 	}
+
+	.loadingWrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+	}
 }
