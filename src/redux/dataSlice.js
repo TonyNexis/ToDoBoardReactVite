@@ -35,9 +35,14 @@ const dataSlice = createSlice({
         data: null,
         loading: false,
         sending: false,
+        sended: false,
         error: null,
     },
-    reducers: {},
+    reducers: {
+      setSendedFalse: state => {
+        state.sended = false
+      }
+    },
     extraReducers: builder => {
         builder
           .addCase(fetchData.pending, state => {
@@ -49,20 +54,26 @@ const dataSlice = createSlice({
             state.data = action.payload;
           })
           .addCase(fetchData.rejected, (state, action) => {
+            state.sended = false;
             state.loading = false;
             state.error = action.payload;
           })
           .addCase(sendData.pending, state => {
+            state.sended = false;
             state.sending = true;
             state.error = null;
           })
           .addCase(sendData.fulfilled, state => {
             state.sending = false;
+            state.sended = true;
           })
           .addCase(sendData.rejected, (state, action) => {
             state.error = action.payload;
+            state.sending = false;
           });
       },
     });
+
+    export const { setSendedFalse } = dataSlice.actions;
 
 export default dataSlice.reducer;

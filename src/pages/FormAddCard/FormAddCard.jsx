@@ -2,19 +2,23 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import dayjs from 'dayjs'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { closeModalCardAdd } from '../../redux/modalCardAddSlice'
 import { sendData } from '../../redux/dataSlice'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
+import { setSendedFalse } from './../../redux/dataSlice'
 import styles from './FormAddCard.module.scss'
 
 const FormAddCard = () => {
+	const { sending, sended, error } = useSelector(state => state.dataToDo);
+	let [dateError, setdateError] = useState(false);
+	let errorMessage;
 	const {
 		register,
 		handleSubmit,
-		watch,
+		reset,
 		formState: { errors },
 		control,
 	} = useForm()
@@ -48,25 +52,46 @@ const FormAddCard = () => {
 
 		const formattedDate = dayjs(data.date).format('MM/DD/YYYY HH:mm')
 
-		const dataCard = {...data, date: formattedDate, id: uuidv4()}
+		const dataCard = { ...data, date: formattedDate, id: uuidv4() }
 
-		dispatch(sendData(dataCard))
+		if (data.date === null) {
+			setdateError(true);
+		} else {
+			dispatch(sendData(dataCard))
+			.then(() => {
+				if (error === null) {
+					reset();
+					setdateError(false);
+					setTimeout(() => {
+						dispatch(setSendedFalse());
+					}, 3000);
+				}
+			})
 
-		console.log('Data from card form==>', dataCard)
+		}	
 	}
 
-
-	let errorMessage
-
 	switch (true) {
-		case errors?.todo?.type === 'required':
+		case sending === true:
+			errorMessage = 'Creating a ToDo card'
+			break
+		case sended === true:
+			errorMessage = 'ToDo card was successfully created!'
+			break
+		case error !== null:
+			errorMessage = `${error}`
+			break
+		case errors?.title?.type === 'required':
 			errorMessage = 'ToDo field is required'
 			break
-		case errors?.todo?.type === 'maxLength':
+		case errors?.title?.type === 'maxLength':
 			errorMessage = 'Maximum ToDo character limit is 61'
 			break
 		case errors?.comment?.type === 'maxLength':
 			errorMessage = 'Maximum Comment character limit is 150'
+			break
+		case dateError === true:
+			errorMessage = 'Please choose the date'
 			break
 		default:
 			errorMessage = null
@@ -158,7 +183,10 @@ const FormAddCard = () => {
 								className={`${styles.dateTimePicker}`}
 								label='Choose date'
 								value={field.value}
-								onChange={field.onChange}
+								onChange={(value) => {
+									field.onChange(value);
+									setdateError(false);
+								}}
 								textField={props => <input {...props} />}
 								ampm={false}
 							/>
