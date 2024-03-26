@@ -2,68 +2,65 @@
 @import './../../mixins.scss';
 
 .card {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-    @include card;
+	@include card;
 
-    .timer {
-        color: whitesmoke;
-        background-color: rgba(79, 79, 79, 0.38);
-        font-size: 30px;
-        text-align: center;
-        height: 54px;
-        width: 300px;
-        border-radius: 15px 15px 0 0;
-        line-height: 54px;
-    }
+	.timer {
+		color: whitesmoke;
+		background-color: rgba(79, 79, 79, 0.38);
+		font-size: 30px;
+		text-align: center;
+		height: 54px;
+		width: 300px;
+		border-radius: 15px 15px 0 0;
+		line-height: 54px;
+	}
 
-    .hotStatus {
-        background-color: rgba(255, 0, 0, 0.38);
-    }
+	.hotStatus {
+		background-color: rgba(255, 0, 0, 0.38);
+	}
 
-    .importantStatus {
-        background-color: rgba(23, 160, 30, 0.38);
-    }
+	.importantStatus {
+		background-color: rgba(23, 160, 30, 0.38);
+	}
 
-    .todo {
-        height: 141px;      
-    }
+	.todo {
+		height: 141px;
+	}
 
-    .comment {
-        height: 180px;
-    }
+	.comment {
+		height: 180px;
+	}
 
-    .cardBlock {
-        display: flex;
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 10px;
-        width: 280px;
+	.cardBlock {
+		display: flex;
+		align-items: flex-start;
+		flex-direction: column;
+		padding: 10px;
+		width: 280px;
 
-        .ticker {
-            margin: 5px;
-            padding: 3px;
-            background-color: yellow;
-            border-radius: 10px;
-            display: inline-block;
-       }
+		.ticker {
+			margin: 5px;
+			padding: 3px;
+			background-color: yellow;
+			border-radius: 10px;
+			display: inline-block;
+		}
 
-       .toDoText {
-            margin: 5px;
-            padding: 3px;
-            color: whitesmoke;
-            height: 69px;
-            
-       }
+		.toDoText {
+			margin: 5px;
+			padding: 3px;
+			color: whitesmoke;
+			height: 69px;
+		}
 
-       .commentText {
-        margin: 5px;
-        padding: 3px;
-        height: 132px;
-        color: whitesmoke;
-   }
-    }
-
-
+		.commentText {
+			margin: 5px;
+			padding: 3px;
+			height: 132px;
+			color: whitesmoke;
+		}
+	}
 }

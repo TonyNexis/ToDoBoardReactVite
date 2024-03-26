@@ -21,16 +21,8 @@ export const sendData = createAsyncThunk(
   'data/sendData',
   async (formData, { rejectWithValue }) => {
     try {
-      const response = await axios.put('./../../db.json', formData, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      if (response.status === 200) {
-        return response.data.todo;
-      } else {
-        return rejectWithValue('File not found');
-      }
+      const response = await axios.post('http://localhost:3000/todo', formData);
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message)
     }

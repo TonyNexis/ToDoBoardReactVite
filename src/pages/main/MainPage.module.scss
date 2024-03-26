@@ -10,17 +10,17 @@ body {
 .page {
 	background-color: $background_color;
 	display: flex;
+	justify-content: center;
 	flex-direction: column;
-	width: 100%;
+	align-items: center;
 
 	.cardList {
-		display: flex;
-		position: relative;
+		display: inline-flex;
+		// position: relative;
 		flex-wrap: wrap;
 		justify-content: flex-start;
-		align-items: center;
-		margin: auto;
-		max-width: 1520px;
+		// margin: 0px 5px 0px 5px; // max-width: 90%;
+		gap: 7px;
 	}
 
 	.loadingWrapper {
