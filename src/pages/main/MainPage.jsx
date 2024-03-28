@@ -15,10 +15,17 @@ const MainPage = () => {
 	const isModalOpen = useSelector(state => state.cardAdd.modalCardAddIsOpen)
 	const dataToDo = useSelector(state => state.dataToDo.data)
 	const loadingStatus = useSelector(state => state.dataToDo.loading)
+	const sended = useSelector(state => state.dataToDo.sended)
 
 	useEffect(() => {
 		dispatch(fetchData())
 	}, [dispatch])
+
+	useEffect(() => {
+		if (sended) {
+			dispatch(fetchData())
+		}
+	}, [sended, dispatch])
 
 	return (
 		<div className={styles.page}>
