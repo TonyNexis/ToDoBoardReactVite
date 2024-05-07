@@ -16,11 +16,14 @@ body {
 
 	.cardList {
 		display: inline-flex;
+		max-width: 1800px;
+		margin: 20px;
 		// position: relative;
 		flex-wrap: wrap;
 		justify-content: flex-start;
 		// margin: 0px 5px 0px 5px; // max-width: 90%;
 		gap: 7px;
+		
 	}
 
 	.loadingWrapper {

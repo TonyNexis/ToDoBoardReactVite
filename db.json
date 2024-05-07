@@ -55,41 +55,6 @@
       "comment": "dfg dfg dfg ",
       "status": "Hot",
       "date": "03/29/2024 06:30"
-    },
-    {
-      "id": "e12e3e6e-bd0a-4076-9605-3d5ac311f656",
-      "title": "Заказать билеты в кино",
-      "comment": "Взять 3 билета на вечер да титаник",
-      "status": "Important",
-      "date": "03/29/2024 04:20"
-    },
-    {
-      "id": "e91582a1-9b1f-4701-95c8-bd67e441f99c",
-      "title": "123",
-      "comment": "123",
-      "status": "Normal",
-      "date": "03/28/2024 00:10"
-    },
-    {
-      "id": "9f9a6857-7074-4035-b98a-2ca09381dac3",
-      "title": "123",
-      "comment": "123",
-      "status": "Hot",
-      "date": "03/28/2024 00:10"
-    },
-    {
-      "id": "ab6e63fc-03c1-4363-8b38-c6d02d566d3a",
-      "title": "321",
-      "comment": "32",
-      "status": "Normal",
-      "date": "03/28/2024 00:05"
-    },
-    {
-      "id": "19dbf1f4-b546-4df7-8847-3bf917c9e645",
-      "title": "123",
-      "comment": "123",
-      "status": "Normal",
-      "date": "03/28/2024 00:05"
     }
   ]
 }
