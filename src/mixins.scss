@@ -7,10 +7,11 @@
 	justify-content: center;
 	align-items: center;
 	border-radius: 15px;
-	margin: 25px 25px 25px 25px;
+	margin: 20px;
 	background-color: $primary_color;
 	box-shadow: 0px 0px 20px #2ea19b76;
 	transition: box-shadow 0.3s ease;
+	cursor: pointer;
 
 	&:hover {
 		box-shadow: 0px 0px 40px #2ea19b76;
