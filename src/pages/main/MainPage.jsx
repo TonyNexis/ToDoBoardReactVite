@@ -30,6 +30,7 @@ const MainPage = () => {
 	return (
 		<div className={styles.page}>
 			<Footer />
+			<div className={styles.footerPlaceholder}></div>
 			{isModalOpen && <FormAddCard />}
 			<div className={styles.cardList}>
 				{loadingStatus ? (

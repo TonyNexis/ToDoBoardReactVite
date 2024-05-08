@@ -16,6 +16,7 @@
 		width: 300px;
 		border-radius: 15px 15px 0 0;
 		line-height: 54px;
+		z-index: 2;
 	}
 
 	.hotStatus {
@@ -24,6 +25,7 @@
 
 	.importantStatus {
 		background-color: rgba(23, 160, 30, 0.38);
+
 	}
 
 	.todo {
@@ -40,6 +42,7 @@
 		flex-direction: column;
 		padding: 10px;
 		width: 280px;
+		z-index: 2;
 
 		.ticker {
 			margin: 5px;
