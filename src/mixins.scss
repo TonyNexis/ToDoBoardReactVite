@@ -16,9 +16,9 @@
 	overflow: hidden;
 	z-index: 10;
 
-	&:hover::before {
-		animation: animate 3s linear infinite;
-	}
+	// &:hover::before {
+	// 	animation: animate 3s linear infinite;
+	// }
 
 	@keyframes animate {
 		from {

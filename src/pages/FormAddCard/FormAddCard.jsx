@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
-import { sendData } from '../../redux/dataSlice'
+import { sendData, addCard } from '../../redux/dataSlice'
 import { closeModalCardAdd } from '../../redux/modalCardAddSlice'
 import { setSendedFalse } from './../../redux/dataSlice'
 import styles from './FormAddCard.module.scss'
@@ -60,11 +60,11 @@ const FormAddCard = () => {
 			dispatch(sendData(dataCard))
 			.then(() => {
 				if (error === null) {
+					dispatch(addCard(dataCard));
 					reset();
 					setdateError(false);
-					setTimeout(() => {
-						dispatch(setSendedFalse());
-					}, 3000);
+					dispatch(setSendedFalse());
+					dispatch(closeModalCardAdd());
 				}
 			})
 

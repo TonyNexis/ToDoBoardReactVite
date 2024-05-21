@@ -41,6 +41,9 @@ const dataSlice = createSlice({
     reducers: {
       setSendedFalse: state => {
         state.sended = false
+      },
+      addCard: (state, action) => {
+        state.data.push(action.payload)
       }
     },
     extraReducers: builder => {
@@ -74,6 +77,6 @@ const dataSlice = createSlice({
       },
     });
 
-    export const { setSendedFalse } = dataSlice.actions;
+    export const { setSendedFalse, addCard } = dataSlice.actions;
 
 export default dataSlice.reducer;
