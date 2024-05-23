@@ -18,18 +18,14 @@ body {
 	.footerPlaceholder {
 		height: 50px;
     	width: 100%;
+		margin-bottom: 20px;
 	}
 
 	.cardList {
-		display: inline-flex;
-		max-width: 1800px;
-		margin: 20px;
-		// position: relative;
-		flex-wrap: wrap;
-		justify-content: flex-start;
-		// margin: 0px 5px 0px 5px; // max-width: 90%;
-		gap: 7px;
-		
+		max-width: 100%;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+		gap: 5px;		
 	}
 
 	.loadingWrapper {
