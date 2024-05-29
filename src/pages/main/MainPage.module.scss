@@ -22,10 +22,11 @@ body {
 	}
 
 	.cardList {
-		max-width: 100%;
+		max-width: calc(100vw - 40px) ;
+		margin: 0px 20px 0px 20px;
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-		gap: 5px;		
+		grid-template-columns: repeat(auto-fit, minmax(340px, 340px));
+		gap: 5px;
 	}
 
 	.loadingWrapper {
