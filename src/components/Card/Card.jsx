@@ -1,3 +1,6 @@
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton'
+import EditIcon from '@mui/icons-material/Edit';
 import { useEffect, useState } from 'react'
 import styles from './Card.module.scss'
 
@@ -5,6 +8,7 @@ const Card = props => {
 	const { id, title, comment, status, date } = props
 
 	const [timeAlert, setTimeAlert] = useState(false)
+	const [editStatus, setEditStatus] = useState(false)
 
 	const calculateTimeLeft = () => {
 		const difference = +new Date(date) - +new Date()
@@ -31,16 +35,16 @@ const Card = props => {
 
 	const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
 
-		useEffect(() => {
-			if (
-				timeLeft.days === '00' &&
-				timeLeft.hours === '00' &&
-				timeLeft.minutes === '00' &&
-				timeLeft.seconds === '00'
-			) {
-				setTimeAlert(true)
-			}
-		}, [timeLeft])
+	useEffect(() => {
+		if (
+			timeLeft.days === '00' &&
+			timeLeft.hours === '00' &&
+			timeLeft.minutes === '00' &&
+			timeLeft.seconds === '00'
+		) {
+			setTimeAlert(true)
+		}
+	}, [timeLeft])
 
 	useEffect(() => {
 		const timer = setInterval(() => {
@@ -59,7 +63,27 @@ const Card = props => {
 	}
 
 	return (
-		<div className={`${styles.card} ${timeAlert === true ? styles.cardAlert : ''}`} id={id}>
+		<div
+			className={`${styles.card} ${timeAlert === true ? styles.cardAlert : ''}`}
+			id={id}
+			onClick={() => setEditStatus(true)}
+		>
+			<IconButton
+				aria-label='close'
+				// onClick={}
+				size='medium'
+				className={styles.closeButton}
+			>
+				<CloseIcon fontSize='medium' />
+			</IconButton>
+			<IconButton
+				aria-label='close'
+				// onClick={}
+				size='large'
+				className={styles.editButton}
+			>
+				<EditIcon fontSize='medium' />
+			</IconButton>
 			<div
 				className={`${styles.timer} ${
 					status === 'Hot'

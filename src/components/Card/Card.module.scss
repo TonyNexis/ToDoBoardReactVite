@@ -7,6 +7,21 @@
 
 	@include card;
 
+	.closeButton {
+		position: absolute;
+		right: 0;
+		top: 0;
+		margin: 5px;
+		color: whitesmoke;
+		z-index: 3 ;
+	}
+
+	.editButton{
+		position: absolute;
+		color: whitesmoke;
+		z-index: 3 ;
+	}
+
 	.timer {
 		color: whitesmoke;
 		background-color: rgba(79, 79, 79, 0.38);
