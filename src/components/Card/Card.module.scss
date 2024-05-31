@@ -7,19 +7,31 @@
 
 	@include card;
 
-	.closeButton {
+	.btnWrapper{
 		position: absolute;
+		display: flex;
+		flex-direction: column;
 		right: 0;
 		top: 0;
 		margin: 5px;
-		color: whitesmoke;
-		z-index: 3 ;
+		z-index: 3;
+		gap: 5px;
+		visibility: hidden;
+		opacity: 0;
+		transition: visibility 1s, opacity 1s;
+
+		.btn {
+			color: whitesmoke;
+		}
 	}
 
-	.editButton{
+	.doneButton{
 		position: absolute;
 		color: whitesmoke;
 		z-index: 3 ;
+		left: 30%;
+		bottom: 10%	;
+		
 	}
 
 	.timer {
@@ -92,6 +104,14 @@
 		}
 		100% {
 			color: rgba(255, 255, 255, 0);
+		}
+	}
+	&:hover {
+		.btnWrapper {
+			visibility: visible;
+			opacity: 1;
+			transition: visibility 1s, opacity 1s;
+
 		}
 	}
 }

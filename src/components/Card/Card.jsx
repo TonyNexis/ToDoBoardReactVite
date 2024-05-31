@@ -1,6 +1,6 @@
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from '@mui/icons-material/Close'
+import EditIcon from '@mui/icons-material/Edit'
 import IconButton from '@mui/material/IconButton'
-import EditIcon from '@mui/icons-material/Edit';
 import { useEffect, useState } from 'react'
 import styles from './Card.module.scss'
 
@@ -62,28 +62,35 @@ const Card = props => {
 		days = `${timeLeft.days} Days`
 	}
 
+	const testFunc = () => {
+		console.log('click')
+	}
+
 	return (
 		<div
 			className={`${styles.card} ${timeAlert === true ? styles.cardAlert : ''}`}
 			id={id}
 			onClick={() => setEditStatus(true)}
 		>
-			<IconButton
-				aria-label='close'
-				// onClick={}
-				size='medium'
-				className={styles.closeButton}
-			>
-				<CloseIcon fontSize='medium' />
-			</IconButton>
-			<IconButton
-				aria-label='close'
-				// onClick={}
-				size='large'
-				className={styles.editButton}
-			>
-				<EditIcon fontSize='medium' />
-			</IconButton>
+			<div className={styles.btnWrapper}>
+				<IconButton
+					aria-label='close'
+					onClick={testFunc}
+					size='medium'
+					className={styles.btn}
+				>
+					<CloseIcon fontSize='medium' />
+				</IconButton>
+				<IconButton
+					aria-label='edit'
+					onClick={testFunc}
+					size='small'
+					className={styles.btn}
+				>
+					<EditIcon fontSize='medium' />
+				</IconButton>
+			</div>
+
 			<div
 				className={`${styles.timer} ${
 					status === 'Hot'
