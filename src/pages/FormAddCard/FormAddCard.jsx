@@ -13,7 +13,7 @@ import styles from './FormAddCard.module.scss'
 
 const FormAddCard = () => {
 	const { sending, sended, error } = useSelector(state => state.dataToDo);
-	let [dateError, setdateError] = useState(false);
+	let [dateError, setDateError] = useState(false);
 	let errorMessage;
 	const {
 		register,
@@ -50,25 +50,24 @@ const FormAddCard = () => {
 	const onSubmit = (data, e) => {
 		e.stopPropagation()
 
-		const formattedDate = dayjs(data.date).format('MM/DD/YYYY HH:mm')
+		if (data.date === null) {
+            setDateError(true);
+            return;
+        }
 
+		const formattedDate = dayjs(data.date).format('MM/DD/YYYY HH:mm')
 		const dataCard = { ...data, date: formattedDate, id: uuidv4() }
 
-		if (data.date === null) {
-			setdateError(true);
-		} else {
-			dispatch(sendData(dataCard))
+		dispatch(sendData(dataCard))
+			.unwrap()
 			.then(() => {
-				if (error === null) {
-					dispatch(addCard(dataCard));
-					reset();
-					setdateError(false);
-					dispatch(setSendedFalse());
-					dispatch(closeModalCardAdd());
-				}
+				reset();
+				setDateError(false);
+				dispatch(closeModalCardAdd());
 			})
-
-		}	
+			.catch(() => {
+				console.log('error')
+			})
 	}
 
 	switch (true) {
@@ -185,7 +184,7 @@ const FormAddCard = () => {
 								value={field.value}
 								onChange={(value) => {
 									field.onChange(value);
-									setdateError(false);
+									setDateError(false);
 								}}
 								textField={props => <input {...props} />}
 								ampm={false}

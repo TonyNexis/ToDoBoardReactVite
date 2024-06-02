@@ -1,46 +1,18 @@
 {
   "todo": [
     {
-      "id": "11854593-c5db-4428-b1fc-c2e191887fdf",
-      "title": "Buy movie tickets",
-      "comment": "2 tickets on MArs 2",
-      "status": "Important",
-      "date": "05/21/2024 02:10"
-    },
-    {
-      "id": "b09d19fe-c8f3-4e47-9f6c-0c2667c95bb8",
-      "title": "Проплатити інтернет",
+      "id": "31351163-98ac-41d1-9d29-7ff60a44bffc",
+      "title": "Выпить кофе",
       "comment": "",
-      "status": "Normal",
-      "date": "05/30/2024 00:30"
-    },
-    {
-      "id": "62c0d4bf-4faa-4424-8d4b-7c9f89c66fec",
-      "title": "Купити квіти",
-      "comment": "",
-      "status": "Normal",
-      "date": "05/29/2024 06:30"
-    },
-    {
-      "id": "b01d19fe-c8f3-4e47-9f6c-0c2667c95bb8",
-      "title": "Проплатити інтернет",
-      "comment": "",
-      "status": "Normal",
-      "date": "05/30/2024 00:30"
-    },
-    {
-      "id": "6210d4bf-4faa-4424-8d4b-7c9f89c66fec",
-      "title": "Купити квіти",
-      "comment": "",
-      "status": "Normal",
-      "date": "05/29/2024 06:30"
-    },
-    {
-      "title": "asd sa jdsahdsad ad as dasd ad a ",
-      "comment": "asd sa jdsahdsad ad as dasd ad a dasd ad as dasd asdfrwfwefdfsfasd sa jdsahdsad ad as dasd ad a dasd ad as dasd asdfrwfwefdfsfasd sa",
       "status": "Hot",
-      "date": "06/01/2024 02:10",
-      "id": "c3d04f36-0b12-4432-91b3-58fbb8b1aad6"
+      "date": "06/02/2024 06:00"
+    },
+    {
+      "id": "f8fbd0fa-2d36-4924-b945-6f2ee303ada9",
+      "title": "Сходить в магазин",
+      "comment": "Купить курицу, молоко, час, йогурт",
+      "status": "Important",
+      "date": "06/04/2024 04:55"
     }
   ]
 }

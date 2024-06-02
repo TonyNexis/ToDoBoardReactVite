@@ -2,13 +2,15 @@ import CloseIcon from '@mui/icons-material/Close'
 import EditIcon from '@mui/icons-material/Edit'
 import IconButton from '@mui/material/IconButton'
 import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { deleteData } from './../../redux/dataSlice'
 import styles from './Card.module.scss'
 
 const Card = props => {
 	const { id, title, comment, status, date } = props
 
 	const [timeAlert, setTimeAlert] = useState(false)
-	const [editStatus, setEditStatus] = useState(false)
+	const dispatch = useDispatch()
 
 	const calculateTimeLeft = () => {
 		const difference = +new Date(date) - +new Date()
@@ -62,32 +64,35 @@ const Card = props => {
 		days = `${timeLeft.days} Days`
 	}
 
-	const testFunc = () => {
-		console.log('click')
+	const cardDeleting = () => {
+		dispatch(deleteData(id))
+	}
+
+	const updateCard = () => {
+		console.log(props)
 	}
 
 	return (
 		<div
 			className={`${styles.card} ${timeAlert === true ? styles.cardAlert : ''}`}
 			id={id}
-			onClick={() => setEditStatus(true)}
 		>
 			<div className={styles.btnWrapper}>
 				<IconButton
-					aria-label='close'
-					onClick={testFunc}
-					size='medium'
-					className={styles.btn}
-				>
-					<CloseIcon fontSize='medium' />
-				</IconButton>
-				<IconButton
 					aria-label='edit'
-					onClick={testFunc}
+					onClick={updateCard}
 					size='small'
 					className={styles.btn}
 				>
 					<EditIcon fontSize='medium' />
+				</IconButton>
+				<IconButton
+					aria-label='close'
+					onClick={cardDeleting}
+					size='medium'
+					className={styles.btn}
+				>
+					<CloseIcon fontSize='medium' />
 				</IconButton>
 			</div>
 

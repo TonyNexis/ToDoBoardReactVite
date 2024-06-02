@@ -6,7 +6,7 @@ import Footer from '../../components/Footer/Footer'
 import { fetchData } from './../../redux/dataSlice'
 import FormAddCard from './../FormAddCard/FormAddCard'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import styles from './MainPage.module.scss'
 
 const MainPage = () => {
@@ -15,24 +15,17 @@ const MainPage = () => {
 	const isModalOpen = useSelector(state => state.cardAdd.modalCardAddIsOpen)
 	const dataToDo = useSelector(state => state.dataToDo.data)
 	const loadingStatus = useSelector(state => state.dataToDo.loading)
-	let [sortedData, setSortedData] = useState(null)
-	// const sended = useSelector(state => state.dataToDo.sended)
+	// let [sortedData, setSortedData] = useState(null)
 
 	useEffect(() => {
 		dispatch(fetchData())
 	}, [dispatch])
 
-	useEffect(() => {
-        if (dataToDo) {
-            setSortedData([...dataToDo].sort((a, b) => new Date(a.date) - new Date(b.date)))
-        }
-    }, [dataToDo])
-
 	// useEffect(() => {
-	// 	if (sended) {
-	// 		dispatch(fetchData())
-	// 	}
-	// }, [sended, dispatch])
+    //     if (dataToDo) {
+    //         setSortedData([...dataToDo].sort((a, b) => new Date(a.date) - new Date(b.date)))
+    //     }
+    // }, [dataToDo])
 
 	return (
 		<div className={styles.page}>
@@ -46,8 +39,8 @@ const MainPage = () => {
 					</div>
 				) : (
 					<>
-						{sortedData &&
-							sortedData.map(item => (
+						{dataToDo &&
+							dataToDo.map(item => (
 								<Card
 									key={item.id}
 									id={item.id}
