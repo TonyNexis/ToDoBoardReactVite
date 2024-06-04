@@ -3,6 +3,8 @@ import EditIcon from '@mui/icons-material/Edit'
 import IconButton from '@mui/material/IconButton'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { setEditCard } from '../../redux/editCardDataSlice'
+import { openModalCard } from '../../redux/modalCardSlice'
 import { deleteData } from './../../redux/dataSlice'
 import styles from './Card.module.scss'
 
@@ -69,7 +71,8 @@ const Card = props => {
 	}
 
 	const updateCard = () => {
-		console.log(props)
+		dispatch(setEditCard(props))
+		dispatch(openModalCard())
 	}
 
 	return (

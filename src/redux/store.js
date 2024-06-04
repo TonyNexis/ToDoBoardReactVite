@@ -1,12 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import modalCardAddSlice from './modalCardAddSlice';
-import dataSlice from './dataSlice';
-import editCardStatusSlice from './editCardStatusSlice';
+import { configureStore } from '@reduxjs/toolkit'
+import dataSlice from './dataSlice'
+import editCardDataSlice from './editCardDataSlice'
+import modalCardSlice from './modalCardSlice'
 
 export default configureStore({
   reducer: {
-    cardAdd: modalCardAddSlice,
+    modalCard: modalCardSlice,
     dataToDo: dataSlice,
-    editCardStatus: editCardStatusSlice,
+    editCardData: editCardDataSlice,
   },
 });

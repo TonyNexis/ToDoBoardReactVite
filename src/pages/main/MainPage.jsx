@@ -12,20 +12,13 @@ import styles from './MainPage.module.scss'
 const MainPage = () => {
 	const dispatch = useDispatch()
 
-	const isModalOpen = useSelector(state => state.cardAdd.modalCardAddIsOpen)
+	const isModalOpen = useSelector(state => state.modalCard.modalCardIsOpen)
 	const dataToDo = useSelector(state => state.dataToDo.data)
 	const loadingStatus = useSelector(state => state.dataToDo.loading)
-	// let [sortedData, setSortedData] = useState(null)
 
 	useEffect(() => {
 		dispatch(fetchData())
 	}, [dispatch])
-
-	// useEffect(() => {
-    //     if (dataToDo) {
-    //         setSortedData([...dataToDo].sort((a, b) => new Date(a.date) - new Date(b.date)))
-    //     }
-    // }, [dataToDo])
 
 	return (
 		<div className={styles.page}>

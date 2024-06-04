@@ -5,28 +5,31 @@ import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { v4 as uuidv4 } from 'uuid'
-import { sendData, addCard } from '../../redux/dataSlice'
-import { closeModalCardAdd } from '../../redux/modalCardAddSlice'
-import { setSendedFalse } from './../../redux/dataSlice'
+import { v4 as uuidv4, validate } from 'uuid'
+import { sendData } from '../../redux/dataSlice'
+import { clearEditCard } from '../../redux/editCardDataSlice'
+import { closeModalCard } from '../../redux/modalCardSlice'
 import styles from './FormAddCard.module.scss'
 
 const FormAddCard = () => {
-	const { sending, sended, error } = useSelector(state => state.dataToDo);
-	let [dateError, setDateError] = useState(false);
-	let errorMessage;
+	const { sending, sended, error } = useSelector(state => state.dataToDo)
+	const editCardData = useSelector(state => state.editCardData.data)
+	let [dateError, setDateError] = useState(false)
+	let errorMessage
 	const {
 		register,
 		handleSubmit,
 		reset,
 		formState: { errors },
 		control,
+		setValue,
 	} = useForm()
 
 	const dispatch = useDispatch()
 
 	const onCloseModal = () => {
-		dispatch(closeModalCardAdd())
+		dispatch(closeModalCard())
+		editCardData !== null ? dispatch(clearEditCard()) : null
 	}
 
 	useEffect(() => {
@@ -43,6 +46,16 @@ const FormAddCard = () => {
 		}
 	}, [])
 
+	useEffect(() => {
+		if (editCardData) {
+			console.log(editCardData)
+			setValue('title', editCardData.title);
+			setValue('comment', editCardData.comment);
+			setValue('status', editCardData.status);
+			setValue('date', dayjs(editCardData.date));
+		}
+	}, [editCardData, setValue])
+
 	const handleFormClick = e => {
 		e.stopPropagation()
 	}
@@ -51,9 +64,9 @@ const FormAddCard = () => {
 		e.stopPropagation()
 
 		if (data.date === null) {
-            setDateError(true);
-            return;
-        }
+			setDateError(true)
+			return
+		}
 
 		const formattedDate = dayjs(data.date).format('MM/DD/YYYY HH:mm')
 		const dataCard = { ...data, date: formattedDate, id: uuidv4() }
@@ -61,9 +74,9 @@ const FormAddCard = () => {
 		dispatch(sendData(dataCard))
 			.unwrap()
 			.then(() => {
-				reset();
-				setDateError(false);
-				dispatch(closeModalCardAdd());
+				reset()
+				setDateError(false)
+				dispatch(closeModalCard())
 			})
 			.catch(() => {
 				console.log('error')
@@ -127,10 +140,11 @@ const FormAddCard = () => {
 						</g>
 					</svg>
 				</svg>
-				<p className={styles.mainText}>Create a ToDo card</p>
+				<p className={styles.mainText}>{editCardData ? "Modify Card" : "Create a ToDo card"}</p>
 				<input
 					className={styles.inputs}
 					placeholder='ToDo'
+					
 					{...register('title', { maxLength: 61, required: true })}
 				/>
 				<textarea
@@ -182,9 +196,9 @@ const FormAddCard = () => {
 								className={`${styles.dateTimePicker}`}
 								label='Choose date'
 								value={field.value}
-								onChange={(value) => {
-									field.onChange(value);
-									setDateError(false);
+								onChange={value => {
+									field.onChange(value)
+									setDateError(false)
 								}}
 								textField={props => <input {...props} />}
 								ampm={false}
@@ -194,7 +208,7 @@ const FormAddCard = () => {
 				</LocalizationProvider>
 				<span className={styles.errorMessage}>{errorMessage}</span>
 
-				<button className={styles.submitButton}>Create</button>
+				<button className={styles.submitButton}>{editCardData ? 'Save' : "Create"}</button>
 			</form>
 		</div>
 	)
