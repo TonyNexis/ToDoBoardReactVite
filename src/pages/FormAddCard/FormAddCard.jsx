@@ -5,8 +5,8 @@ import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { v4 as uuidv4, validate } from 'uuid'
-import { sendData } from '../../redux/dataSlice'
+import { v4 as uuidv4 } from 'uuid'
+import { sendData, updateData } from '../../redux/dataSlice'
 import { clearEditCard } from '../../redux/editCardDataSlice'
 import { closeModalCard } from '../../redux/modalCardSlice'
 import styles from './FormAddCard.module.scss'
@@ -49,10 +49,10 @@ const FormAddCard = () => {
 	useEffect(() => {
 		if (editCardData) {
 			console.log(editCardData)
-			setValue('title', editCardData.title);
-			setValue('comment', editCardData.comment);
-			setValue('status', editCardData.status);
-			setValue('date', dayjs(editCardData.date));
+			setValue('title', editCardData.title)
+			setValue('comment', editCardData.comment)
+			setValue('status', editCardData.status)
+			setValue('date', dayjs(editCardData.date))
 		}
 	}, [editCardData, setValue])
 
@@ -69,18 +69,35 @@ const FormAddCard = () => {
 		}
 
 		const formattedDate = dayjs(data.date).format('MM/DD/YYYY HH:mm')
-		const dataCard = { ...data, date: formattedDate, id: uuidv4() }
+		const dataCard = {
+			...data,
+			date: formattedDate,
+			id: `${editCardData ? editCardData.id : uuidv4()}`,
+		}
 
-		dispatch(sendData(dataCard))
-			.unwrap()
-			.then(() => {
-				reset()
-				setDateError(false)
-				dispatch(closeModalCard())
-			})
-			.catch(() => {
-				console.log('error')
-			})
+		if (editCardData) {
+			dispatch(updateData({ id: editCardData.id, formData: dataCard }))
+				.unwrap()
+				.then(() => {
+					reset()
+					setDateError(false)
+					dispatch(closeModalCard())
+				})
+				.catch(() => {
+					console.log('error')
+				})
+		} else {
+			dispatch(sendData(dataCard))
+				.unwrap()
+				.then(() => {
+					reset()
+					setDateError(false)
+					dispatch(closeModalCard())
+				})
+				.catch(() => {
+					console.log('error')
+				})
+		}
 	}
 
 	switch (true) {
@@ -140,11 +157,12 @@ const FormAddCard = () => {
 						</g>
 					</svg>
 				</svg>
-				<p className={styles.mainText}>{editCardData ? "Modify Card" : "Create a ToDo card"}</p>
+				<p className={styles.mainText}>
+					{editCardData ? 'Modify Card' : 'Create a ToDo card'}
+				</p>
 				<input
 					className={styles.inputs}
 					placeholder='ToDo'
-					
 					{...register('title', { maxLength: 61, required: true })}
 				/>
 				<textarea
@@ -208,7 +226,9 @@ const FormAddCard = () => {
 				</LocalizationProvider>
 				<span className={styles.errorMessage}>{errorMessage}</span>
 
-				<button className={styles.submitButton}>{editCardData ? 'Save' : "Create"}</button>
+				<button className={styles.submitButton}>
+					{editCardData ? 'Save' : 'Create'}
+				</button>
 			</form>
 		</div>
 	)

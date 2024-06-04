@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 
 export const fetchData = createAsyncThunk(
     'data/fetchData',
@@ -44,6 +44,17 @@ export const sendData = createAsyncThunk(
     }
   }
 );
+
+export const updateData = createAsyncThunk(
+  'data/updateData',
+  async ({formData, id}, {rejectWithValue}) => {
+    try {
+      const response = await axios.post('http://localhost:3000/todo', formData)
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+)
 
 const dataSlice = createSlice({
     name: 'data',
@@ -93,7 +104,23 @@ const dataSlice = createSlice({
             state.error = action.payload;
             state.sending = false;
           })
-
+          .addCase(updateData.pending, state => {
+            state.sending = true;
+            state.error = null;
+          })
+          .addCase(updateData.fulfilled, (state, action) => {
+            state.sending = false;
+            state.sended = true;
+            const index = state.data.findIndex(item => item.id === action.payload.id);
+            if (index !== -1) {
+              state.data[index] = action.payload;
+            }
+            state.data.sort((a, b) => new Date(a.date) - new Date(b.date));
+          })
+          .addCase(updateData.rejected, (state, action) => {
+            state.error = action.payload;
+            state.sending = false;
+          })
           .addCase(deleteData.pending, state => {
             state.deleting = true;
             state.error = null;
