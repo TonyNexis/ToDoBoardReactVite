@@ -6,16 +6,16 @@ import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
-import { sendData, updateData } from '../../redux/dataSlice'
+import { sendData, updateData, setSendedFalse, setEditedFalse } from '../../redux/dataSlice'
 import { clearEditCard } from '../../redux/editCardDataSlice'
 import { closeModalCard } from '../../redux/modalCardSlice'
 import styles from './FormAddCard.module.scss'
 
 const FormAddCard = () => {
-	const { sending, sended, error } = useSelector(state => state.dataToDo)
+	const { sending, sended, editing, edited, error } = useSelector(state => state.dataToDo)
 	const editCardData = useSelector(state => state.editCardData.data)
 	let [dateError, setDateError] = useState(false)
-	let errorMessage
+	let modalMessage
 	const {
 		register,
 		handleSubmit,
@@ -48,7 +48,6 @@ const FormAddCard = () => {
 
 	useEffect(() => {
 		if (editCardData) {
-			console.log(editCardData)
 			setValue('title', editCardData.title)
 			setValue('comment', editCardData.comment)
 			setValue('status', editCardData.status)
@@ -81,6 +80,7 @@ const FormAddCard = () => {
 				.then(() => {
 					reset()
 					setDateError(false)
+					dispatch(setEditedFalse());
 					dispatch(closeModalCard())
 				})
 				.catch(() => {
@@ -92,6 +92,7 @@ const FormAddCard = () => {
 				.then(() => {
 					reset()
 					setDateError(false)
+					dispatch(setSendedFalse());
 					dispatch(closeModalCard())
 				})
 				.catch(() => {
@@ -102,28 +103,34 @@ const FormAddCard = () => {
 
 	switch (true) {
 		case sending === true:
-			errorMessage = 'Creating a ToDo card'
+			modalMessage = 'Creating a ToDo card'
 			break
 		case sended === true:
-			errorMessage = 'ToDo card was successfully created!'
+			modalMessage = 'ToDo card was successfully created!'
+			break
+		case editing === true:
+			modalMessage = 'Editing ToDo card'
+			break
+		case edited === true:
+			modalMessage = 'ToDo card was successfully changed!'
 			break
 		case error !== null:
-			errorMessage = `${error}`
+			modalMessage = `${error}`
 			break
 		case errors?.title?.type === 'required':
-			errorMessage = 'ToDo field is required'
+			modalMessage = 'ToDo field is required'
 			break
 		case errors?.title?.type === 'maxLength':
-			errorMessage = 'Maximum ToDo character limit is 61'
+			modalMessage = 'Maximum ToDo character limit is 61'
 			break
 		case errors?.comment?.type === 'maxLength':
-			errorMessage = 'Maximum Comment character limit is 150'
+			modalMessage = 'Maximum Comment character limit is 150'
 			break
 		case dateError === true:
-			errorMessage = 'Please choose the date'
+			modalMessage = 'Please choose the date'
 			break
 		default:
-			errorMessage = null
+			modalMessage = null
 	}
 
 	return (
@@ -224,7 +231,7 @@ const FormAddCard = () => {
 						)}
 					/>
 				</LocalizationProvider>
-				<span className={styles.errorMessage}>{errorMessage}</span>
+				<span className={styles.errorMessage}>{modalMessage}</span>
 
 				<button className={styles.submitButton}>
 					{editCardData ? 'Save' : 'Create'}

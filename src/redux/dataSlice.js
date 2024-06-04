@@ -49,7 +49,8 @@ export const updateData = createAsyncThunk(
   'data/updateData',
   async ({formData, id}, {rejectWithValue}) => {
     try {
-      const response = await axios.post('http://localhost:3000/todo', formData)
+      const response = await axios.put(`http://localhost:3000/todo/${id}`, formData)
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message)
     }
@@ -63,12 +64,17 @@ const dataSlice = createSlice({
         loading: false,
         sending: false,
         sended: false,
+        editing: false,
+        edited: false,
         error: null,
         deleting: false,
     },
     reducers: {
       setSendedFalse: state => {
         state.sended = false
+      },
+      setEditedFalse: state => {
+        state.edited = false
       },
       addCard: (state, action) => {
         state.data.push(action.payload)
@@ -105,12 +111,12 @@ const dataSlice = createSlice({
             state.sending = false;
           })
           .addCase(updateData.pending, state => {
-            state.sending = true;
+            state.editing = true;
             state.error = null;
           })
           .addCase(updateData.fulfilled, (state, action) => {
-            state.sending = false;
-            state.sended = true;
+            state.editing = false;
+            state.edited = true;
             const index = state.data.findIndex(item => item.id === action.payload.id);
             if (index !== -1) {
               state.data[index] = action.payload;
@@ -119,7 +125,7 @@ const dataSlice = createSlice({
           })
           .addCase(updateData.rejected, (state, action) => {
             state.error = action.payload;
-            state.sending = false;
+            state.editing = false;
           })
           .addCase(deleteData.pending, state => {
             state.deleting = true;
@@ -136,6 +142,6 @@ const dataSlice = createSlice({
       },
     });
 
-    export const { setSendedFalse, addCard } = dataSlice.actions;
+    export const { setSendedFalse, setEditedFalse, addCard } = dataSlice.actions;
 
 export default dataSlice.reducer;
