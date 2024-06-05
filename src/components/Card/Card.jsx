@@ -2,7 +2,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import EditIcon from '@mui/icons-material/Edit'
 import IconButton from '@mui/material/IconButton'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setEditCard } from '../../redux/editCardDataSlice'
 import { openModalCard } from '../../redux/modalCardSlice'
 import { deleteData } from './../../redux/dataSlice'
@@ -38,6 +38,7 @@ const Card = props => {
 	}
 
 	const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
+	const cardSended = useSelector(state => state.dataToDo.sended)
 
 	useEffect(() => {
 		if (
@@ -47,8 +48,16 @@ const Card = props => {
 			timeLeft.seconds === '00'
 		) {
 			setTimeAlert(true)
+		} else {
+			setTimeAlert(false)
 		}
 	}, [timeLeft])
+	
+	useEffect(() => {
+		if (cardSended) {
+			setTimeLeft(calculateTimeLeft())
+		}
+	}, [cardSended])
 
 	useEffect(() => {
 		const timer = setInterval(() => {

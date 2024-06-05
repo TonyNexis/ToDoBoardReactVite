@@ -81,7 +81,8 @@ const FormAddCard = () => {
 					reset()
 					setDateError(false)
 					dispatch(setEditedFalse());
-					dispatch(closeModalCard())
+					dispatch(closeModalCard());
+					dispatch(clearEditCard());
 				})
 				.catch(() => {
 					console.log('error')
