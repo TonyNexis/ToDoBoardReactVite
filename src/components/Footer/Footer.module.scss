@@ -1,8 +1,8 @@
 @import './../../variables.scss';
 
 .footer {
-	display: flex;
-	justify-content: center;
+	display: grid;
+	grid-template-columns: 1.14fr 1fr;
 	align-items: center;
 	background-color: $primary_color;
 	height: 50px;
@@ -10,4 +10,20 @@
 	margin-bottom: 20px;
 	position: fixed;
 	z-index: 22;
+
+	.container{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-grow: 1;
+		width: 100%;
+		gap: 20px;
+	}
+
+	@media(max-width: 900px) {
+		display: flex;
+		flex-direction: column-reverse;
+		height: 100px;
+		border-bottom: 2px solid rgb(22, 22, 22);
+	}
 }

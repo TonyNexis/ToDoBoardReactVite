@@ -5,4 +5,25 @@
     flex-direction: row;
     gap: 10px;
     color: #2ea19c;
+    margin: 0px 100px 0px 100px;
+    background: $background_color;
+    border-radius: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 20px 0px 20px;
+
+    .switchWrapper{
+        display: flex;
+        flex-direction: row;
+
+        .switch {
+            margin-top: 9px;
+        }
+    }
+
+    @media(max-width: 900px) {
+        margin: 0 0 0 20px;
+	}
+
 }
