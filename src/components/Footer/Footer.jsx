@@ -1,5 +1,5 @@
 import ButtonAddCardFooter from '../ButtonAddCardFooter/ButtonAddCardFooter'
-import Filter from '../Filter/Filter'
+import Filter from './../Filter/Filter'
 import Clock from './../Clock/Clock'
 
 import styles from './Footer.module.scss'
