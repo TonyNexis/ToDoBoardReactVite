@@ -1,17 +1,21 @@
+import { createRouter, RouterProvider } from '@tanstack/react-router'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
-import store from './redux/store.js'
 import './firebase/firebaseConfig.js'
-
-import App from './App.jsx'
+import store from './redux/store.js'
+import { routeTree } from './routeTree.gen.ts'
 
 import './main.css'
+
+const router = createRouter({ routeTree })
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<App />
+			{/* <App />
+			 */}
+			<RouterProvider router={router} />
 		</Provider>
 	</React.StrictMode>
 )

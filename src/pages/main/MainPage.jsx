@@ -15,10 +15,18 @@ const MainPage = () => {
 	const isModalOpen = useSelector(state => state.modalCard.modalCardIsOpen)
 	const dataToDo = useSelector(state => state.dataToDo.data)
 	const loadingStatus = useSelector(state => state.dataToDo.loading)
+	const filters = useSelector(state => state.filterCards)
 
 	useEffect(() => {
 		dispatch(fetchData())
 	}, [dispatch])
+
+	const filteredData = dataToDo ? dataToDo.filter((item) => {
+		if (item.status === 'Hot' && !filters.hot) return false;
+		if (item.status === 'Important' && !filters.important) return false;
+		if (item.status === 'Normal' && !filters.normal) return false;
+		return true;
+	}) : [];
 
 	return (
 		<div className={styles.page}>
@@ -32,8 +40,7 @@ const MainPage = () => {
 					</div>
 				) : (
 					<>
-						{dataToDo &&
-							dataToDo.map(item => (
+						{filteredData.map(item => (
 								<Card
 									key={item.id}
 									id={item.id}
