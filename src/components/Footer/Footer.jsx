@@ -12,7 +12,12 @@ const Footer = () => {
 
 	return (
 		<div className={styles.footer}>
-
+			<div className={styles.toggleNavBtn}>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
 			{isHomePage && <ButtonAddCardFooter />}
 			<div className={styles.container}>
 				{isHomePage && <Filter />}
