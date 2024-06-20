@@ -3,6 +3,7 @@ import dataSlice from './dataSlice'
 import editCardDataSlice from './editCardDataSlice'
 import modalCardSlice from './modalCardSlice'
 import filterSlice from './filterSlice'
+import showMenuSlice from './showMenuSlice'
 
 export default configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export default configureStore({
     dataToDo: dataSlice,
     editCardData: editCardDataSlice,
     filterCards: filterSlice,
+    showMenu: showMenuSlice, 
   },
 });
