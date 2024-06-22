@@ -9,18 +9,19 @@ import { toggleShowMenu } from '../../redux/showMenuSlice'
 const Footer = () => {
 	const dispatch = useDispatch();
 	const location = useLocation()
+	const menuIsOpen = useSelector(state => state.showMenu.MenuIsOpen)
 
 	const isHomePage = location.pathname === '/'
 
 	const toggleNavBtn = useSelector(state => state.showMenu.MenuIsOpen)
 
-	const onToggleNavBtn = () => {
+    const onToggleNavBtn = () => {
 		dispatch(toggleShowMenu())
-	}
+    }
 
 	return (
 		<div className={styles.footer}>
-			<div className={`${styles.toggleNavBtn} ${toggleNavBtn ? styles.open : null}`} onClick={onToggleNavBtn}>
+			<div className={`${styles.toggleNavBtn} ${toggleNavBtn ? styles.open : ''}`} onClick={onToggleNavBtn}>
 				<span></span>
 				<span></span>
 				<span></span>

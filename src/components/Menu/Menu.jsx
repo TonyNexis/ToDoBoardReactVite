@@ -17,13 +17,13 @@ const Menu = () => {
 
 	useEffect(() => {
 		if (showMenu) {
-			document.addEventListener('mousedown', handleClickOutside)
+			document.addEventListener('click', handleClickOutside)
 		} else {
-			document.removeEventListener('mousedown', handleClickOutside)
+			document.removeEventListener('click', handleClickOutside)
 		}
 
 		return () => {
-			document.removeEventListener('mousedown', handleClickOutside)
+			document.removeEventListener('click', handleClickOutside)
 		}
 	}, [showMenu])
 
