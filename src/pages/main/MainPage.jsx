@@ -7,7 +7,7 @@ import { fetchData } from './../../redux/dataSlice'
 import FormAddCard from './../FormAddCard/FormAddCard'
 import Menu from '../../components/Menu/Menu'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import styles from './MainPage.module.scss'
 
 const MainPage = () => {
@@ -17,6 +17,7 @@ const MainPage = () => {
 	const dataToDo = useSelector(state => state.dataToDo.data)
 	const loadingStatus = useSelector(state => state.dataToDo.loading)
 	const filters = useSelector(state => state.filterCards)
+	const footerBtnToggleMenuRef = useRef(null);
 
 	useEffect(() => {
 		dispatch(fetchData())
@@ -31,8 +32,8 @@ const MainPage = () => {
 
 	return (
 		<div className={styles.page}>
-			<Footer />
-			<Menu/>
+			<Footer footerBtnToggleMenuRef={footerBtnToggleMenuRef} />
+			<Menu footerBtnToggleMenuRef={footerBtnToggleMenuRef}/>
 			<div className={styles.footerPlaceholder}></div>
 			{isModalOpen && <FormAddCard />}
 			<div className={styles.cardList}>

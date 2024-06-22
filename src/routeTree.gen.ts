@@ -93,7 +93,7 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "profile.tsx"
     },
     "/about": {
-      "filePath": "about.lazy.tsx"
+      "filePath": "about.lazy.jsx"
     }
   }
 }

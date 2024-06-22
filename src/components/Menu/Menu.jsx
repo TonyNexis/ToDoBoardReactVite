@@ -4,33 +4,34 @@ import { useDispatch, useSelector } from 'react-redux'
 import { toggleShowMenu } from '../../redux/showMenuSlice'
 import styles from './Menu.module.scss'
 
-const Menu = () => {
+const Menu = ({ footerBtnToggleMenuRef }) => {
 	const showMenu = useSelector(state => state.showMenu.MenuIsOpen)
 	const menuRef = useRef(null)
     const dispatch = useDispatch();
 
 	const handleClickOutside = (event) => {
-		if (menuRef.current && !menuRef.current.contains(event.target)) {
+		if (menuRef.current && !menuRef.current.contains(event.target)
+			&& footerBtnToggleMenuRef.current && !footerBtnToggleMenuRef.current.contains(event.target) && showMenu) {
 			dispatch(toggleShowMenu())
 		}
 	}
 
 	useEffect(() => {
 		if (showMenu) {
-			document.addEventListener('click', handleClickOutside)
+			document.addEventListener('mousedown', handleClickOutside)
 		} else {
-			document.removeEventListener('click', handleClickOutside)
+			document.removeEventListener('mousedown', handleClickOutside)
 		}
 
 		return () => {
-			document.removeEventListener('click', handleClickOutside)
+			document.removeEventListener('mousedown', handleClickOutside)
 		}
 	}, [showMenu])
 
 	return (
 		<div
 			ref={menuRef}
-			className={`${styles.menu} ${showMenu ? styles.active : null} `}
+			className={`${styles.menu} ${showMenu ? styles.active : ""} `}
 		>
 			<Link to='/'>Home</Link>
 			<Link to='/about'>About</Link>
