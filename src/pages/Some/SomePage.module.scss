@@ -12,8 +12,10 @@
     }
     .wrapper {
         display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
         .test {
-            z-index: 111;
             width: 500px;
             padding: 20px;
         }
