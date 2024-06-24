@@ -10,12 +10,11 @@
 	.btnWrapper{
 		position: absolute;
 		display: flex;
-		// flex-direction: column;
 		right: 0;
 		top: 50px;
 		margin: 5px;
 		z-index: 3;
-		// gap: 5px;
+		gap: 5px;
 		visibility: hidden;
 		opacity: 0;
 		transition: visibility 1s, opacity 1s;
