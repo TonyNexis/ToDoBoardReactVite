@@ -2,10 +2,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { BeatLoader } from 'react-spinners'
 import ButtonAddCard from '../../components/ButtonAddCard/ButtonAddCard'
 import Card from '../../components/Card/Card'
-import Footer from '../../components/Footer/Footer'
-import { fetchData } from './../../redux/dataSlice'
-import FormAddCard from './../FormAddCard/FormAddCard'
-import Menu from '../../components/Menu/Menu'
+import { fetchData } from '../../redux/dataSlice'
+import FormAddCard from '../FormAddCard/FormAddCard'
 
 import { useEffect, useRef } from 'react'
 import styles from './MainPage.module.scss'
@@ -17,7 +15,6 @@ const MainPage = () => {
 	const dataToDo = useSelector(state => state.dataToDo.data)
 	const loadingStatus = useSelector(state => state.dataToDo.loading)
 	const filters = useSelector(state => state.filterCards)
-	const footerBtnToggleMenuRef = useRef(null);
 
 	useEffect(() => {
 		dispatch(fetchData())
@@ -32,8 +29,6 @@ const MainPage = () => {
 
 	return (
 		<div className={styles.page}>
-			<Footer footerBtnToggleMenuRef={footerBtnToggleMenuRef} />
-			<Menu footerBtnToggleMenuRef={footerBtnToggleMenuRef}/>
 			<div className={styles.footerPlaceholder}></div>
 			{isModalOpen && <FormAddCard />}
 			<div className={styles.cardList}>

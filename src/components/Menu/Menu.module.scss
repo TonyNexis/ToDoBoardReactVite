@@ -16,9 +16,9 @@
 	transition: left 0.3s ease;
 	&.active {
 		left: 0;
-	  } 
+	}
 	a {
-        text-align: center;
+		text-align: center;
 		color: #2ea19c;
 		text-decoration: none;
 		font-size: 18px;
@@ -49,5 +49,10 @@
 		&:hover {
 			color: whitesmoke;
 		}
+	}
+
+	.activeLink {
+		font-weight: bold;
+		color: red;
 	}
 }

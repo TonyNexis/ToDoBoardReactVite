@@ -1,4 +1,4 @@
-.aboutPage {
+.profilePage {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,10 +10,12 @@
         padding: 20px;
         text-align: center;
     }
-    .test {
-        z-index: 111;
-        width: 500px;
-        padding: 20px;
+    .wrapper {
+        display: flex;
+        .test {
+            z-index: 111;
+            width: 500px;
+            padding: 20px;
+        }
     }
-
 }
