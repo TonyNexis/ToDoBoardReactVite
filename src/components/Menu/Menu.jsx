@@ -1,7 +1,7 @@
+import ApprovalIcon from '@mui/icons-material/Approval'
 import HomeIcon from '@mui/icons-material/Home'
-import PersonPinIcon from '@mui/icons-material/PersonPin';
-import InfoIcon from '@mui/icons-material/Info';
-import ApprovalIcon from '@mui/icons-material/Approval';
+import InfoIcon from '@mui/icons-material/Info'
+import PersonPinIcon from '@mui/icons-material/PersonPin'
 import { Link, useLocation } from '@tanstack/react-router'
 import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -41,46 +41,28 @@ const Menu = ({ footerBtnToggleMenuRef }) => {
 	const location = useLocation()
 
 	const isActive = path => location.pathname === path
+	
+	const menuBtn = (link, name, IconComponent) => {
+		return (
+			<Link
+			to={link}
+			className={`${styles.btnWrapper} ${isActive(link) ? styles.activeLink : ''} `}
+		>
+			<IconComponent />
+			<p>{name}</p>
+		</Link>
+		)
+	}
 
 	return (
 		<div
 			ref={menuRef}
 			className={`${styles.menu} ${showMenu ? styles.active : ''} `}
 		>
-			<Link to='/' className={styles.btnWrapper}>
-				<HomeIcon className={`${styles.icon} ${isActive('/') ? styles.activeLink : ''} `} />
-				<p className={isActive('/') ? styles.activeLink : ''}>
-					Home
-				</p>
-			</Link>
-
-
-
-
-			<div className={styles.btnWrapper}>
-				<PersonPinIcon className={styles.icon}/>
-				<Link
-				className={isActive('/profile') ? styles.activeLink : ''}
-				to='/profile'
-			>
-				Profile
-			</Link>
-			</div>
-			<div className={styles.btnWrapper}>
-				<ApprovalIcon className={styles.icon}/>
-				<Link
-				className={isActive('/somepage') ? styles.activeLink : ''}
-				to='/somepage'
-			>
-				SomePage
-			</Link>
-			</div>
-			<div className={styles.btnWrapper}>
-				<InfoIcon className={styles.icon}/>
-				<Link className={isActive('/about') ? styles.activeLink : ''} to='/about'>
-				About
-			</Link>
-			</div>
+			{menuBtn('/','Home', HomeIcon)}
+			{menuBtn('/profile','Profile', PersonPinIcon)}
+			{menuBtn('/somepage','SomePage', ApprovalIcon)}
+			{menuBtn('/about','About', InfoIcon)}
 		</div>
 	)
 }

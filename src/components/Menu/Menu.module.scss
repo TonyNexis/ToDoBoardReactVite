@@ -17,46 +17,15 @@
 	&.active {
 		left: 0;
 	}
-	p {
-		// text-align: center;
-		color: #2ea19c;
-		// text-decoration: none;
-		font-size: 18px;
-		// position: relative;
-		transition: color 0.3s;
-
-		// &::after {
-		// 	content: '';
-		// 	position: absolute;
-		// 	width: 0;
-		// 	height: 2px;
-		// 	display: block;
-		// 	margin-top: 5px;
-		// 	right: 0;
-		// 	background: whitesmoke;
-		// 	transition:
-		// 		width 0.3s ease,
-		// 		background-color 0.3s ease;
-		// }
-
-		// &:hover::after {
-		// 	width: 100%;
-		// 	left: 0;
-		// 	background: whitesmoke;
-		// }
-
-		// &:hover {
-		// 	color: whitesmoke;
-		// }
-	}
 	.btnWrapper {
+		color: #2ea19c;
 		// padding: 10px 15px;
+		text-decoration: none;
 		margin: 0 10px 0 10px;
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
 		gap: 10px;
-		
 
 		&::after {
 			content: '';
@@ -81,9 +50,10 @@
 		&:hover {
 			color: whitesmoke;
 		}
-
-		.icon {
-			color: #2ea19c;
+		p{
+			margin: 0;
+			position: relative;
+			top: 2px;
 		}
 	}
 	.activeLink {
