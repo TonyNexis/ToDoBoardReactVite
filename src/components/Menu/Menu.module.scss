@@ -19,9 +19,8 @@
 	}
 	.btnWrapper {
 		color: #2ea19c;
-		// padding: 10px 15px;
+		padding: 0 0px 0 10px;
 		text-decoration: none;
-		margin: 0 10px 0 10px;
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
@@ -54,6 +53,18 @@
 			margin: 0;
 			position: relative;
 			top: 2px;
+		}
+		
+		.test {
+			position: relative;
+			left: -50px;
+			opacity: 0; 
+			transition: left 1s ease, opacity 1s ease-in;
+
+			&.testA {
+				left: 0;
+				opacity: 1;
+			}
 		}
 	}
 	.activeLink {
