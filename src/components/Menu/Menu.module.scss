@@ -11,20 +11,52 @@
 	left: 0;
 	top: 50px;
 	padding: 30px 10px;
-	gap: 10px;
+	gap: 20px;
 	left: -170px;
 	transition: left 0.3s ease;
 	&.active {
 		left: 0;
 	}
-	a {
-		text-align: center;
+	p {
+		// text-align: center;
 		color: #2ea19c;
-		text-decoration: none;
+		// text-decoration: none;
 		font-size: 18px;
-		padding: 10px 15px;
-		position: relative;
+		// position: relative;
 		transition: color 0.3s;
+
+		// &::after {
+		// 	content: '';
+		// 	position: absolute;
+		// 	width: 0;
+		// 	height: 2px;
+		// 	display: block;
+		// 	margin-top: 5px;
+		// 	right: 0;
+		// 	background: whitesmoke;
+		// 	transition:
+		// 		width 0.3s ease,
+		// 		background-color 0.3s ease;
+		// }
+
+		// &:hover::after {
+		// 	width: 100%;
+		// 	left: 0;
+		// 	background: whitesmoke;
+		// }
+
+		// &:hover {
+		// 	color: whitesmoke;
+		// }
+	}
+	.btnWrapper {
+		// padding: 10px 15px;
+		margin: 0 10px 0 10px;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 10px;
+		
 
 		&::after {
 			content: '';
@@ -32,7 +64,7 @@
 			width: 0;
 			height: 2px;
 			display: block;
-			margin-top: 5px;
+			margin-top: 35px;
 			right: 0;
 			background: whitesmoke;
 			transition:
@@ -49,8 +81,11 @@
 		&:hover {
 			color: whitesmoke;
 		}
-	}
 
+		.icon {
+			color: #2ea19c;
+		}
+	}
 	.activeLink {
 		font-weight: bold;
 		color: red;

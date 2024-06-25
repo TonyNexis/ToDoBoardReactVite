@@ -5,7 +5,7 @@ import Card from '../../components/Card/Card'
 import { fetchData } from '../../redux/dataSlice'
 import FormAddCard from '../FormAddCard/FormAddCard'
 
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import styles from './MainPage.module.scss'
 
 const MainPage = () => {

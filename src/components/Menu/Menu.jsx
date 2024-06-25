@@ -1,7 +1,12 @@
+import HomeIcon from '@mui/icons-material/Home'
+import PersonPinIcon from '@mui/icons-material/PersonPin';
+import InfoIcon from '@mui/icons-material/Info';
+import ApprovalIcon from '@mui/icons-material/Approval';
 import { Link, useLocation } from '@tanstack/react-router'
 import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleShowMenu } from '../../redux/showMenuSlice'
+
 import styles from './Menu.module.scss'
 
 const Menu = ({ footerBtnToggleMenuRef }) => {
@@ -42,24 +47,40 @@ const Menu = ({ footerBtnToggleMenuRef }) => {
 			ref={menuRef}
 			className={`${styles.menu} ${showMenu ? styles.active : ''} `}
 		>
-			<Link className={isActive('/') ? styles.activeLink : ''} to='/'>
-				Home
+			<Link to='/' className={styles.btnWrapper}>
+				<HomeIcon className={`${styles.icon} ${isActive('/') ? styles.activeLink : ''} `} />
+				<p className={isActive('/') ? styles.activeLink : ''}>
+					Home
+				</p>
 			</Link>
-			<Link
+
+
+
+
+			<div className={styles.btnWrapper}>
+				<PersonPinIcon className={styles.icon}/>
+				<Link
 				className={isActive('/profile') ? styles.activeLink : ''}
 				to='/profile'
 			>
 				Profile
 			</Link>
-			<Link
+			</div>
+			<div className={styles.btnWrapper}>
+				<ApprovalIcon className={styles.icon}/>
+				<Link
 				className={isActive('/somepage') ? styles.activeLink : ''}
 				to='/somepage'
 			>
-				Some Page
+				SomePage
 			</Link>
-			<Link className={isActive('/about') ? styles.activeLink : ''} to='/about'>
+			</div>
+			<div className={styles.btnWrapper}>
+				<InfoIcon className={styles.icon}/>
+				<Link className={isActive('/about') ? styles.activeLink : ''} to='/about'>
 				About
 			</Link>
+			</div>
 		</div>
 	)
 }
