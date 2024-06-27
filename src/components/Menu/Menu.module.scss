@@ -55,15 +55,15 @@
 			top: 2px;
 		}
 		
-		.test {
+		.icon {
 			position: relative;
 			left: -50px;
 			opacity: 0; 
-			transition: left 1s ease, opacity 1s ease-in;
-
-			&.testA {
+			&.activeIcon {
 				left: 0;
 				opacity: 1;
+				transition: left 1s ease, opacity 1s ease-in;
+
 			}
 		}
 	}

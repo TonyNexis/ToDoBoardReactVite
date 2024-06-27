@@ -48,7 +48,7 @@ const Menu = ({ footerBtnToggleMenuRef }) => {
 			to={link}
 			className={`${styles.btnWrapper} ${isActive(link) ? styles.activeLink : ''} `}
 		>
-			<IconComponent className={`${styles.test} ${showMenu ? styles.testA : ''} `}/>
+			<IconComponent className={`${styles.icon} ${showMenu ? styles.activeIcon : ''} `}/>
 			<p>{name}</p>
 		</Link>
 		)
