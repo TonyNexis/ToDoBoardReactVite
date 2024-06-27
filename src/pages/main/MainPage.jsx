@@ -4,8 +4,23 @@ import ButtonAddCard from '../../components/ButtonAddCard/ButtonAddCard'
 import Card from '../../components/Card/Card'
 import { fetchData } from '../../redux/dataSlice'
 import FormAddCard from '../FormAddCard/FormAddCard'
+import { useEffect, useState } from 'react'
+import SortableItem from '../../components/SortableItem/SortableItem'
+import {
+	DndContext, 
+	closestCenter,
+	useSensor,
+	useSensors,
+	KeyboardSensor,
+	PointerSensor
+} from "@dnd-kit/core";
+import {
+	arrayMove,
+	SortableContext,
+	verticalListSortingStrategy,
+	sortableKeyboardCoordinates
+} from '@dnd-kit/sortable'
 
-import { useEffect } from 'react'
 import styles from './MainPage.module.scss'
 
 const MainPage = () => {
