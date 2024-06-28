@@ -31,16 +31,43 @@ const MainPage = () => {
 	const loadingStatus = useSelector(state => state.dataToDo.loading)
 	const filters = useSelector(state => state.filterCards)
 
+	const [items, setItems] = useState(dataToDo);
+
 	useEffect(() => {
 		dispatch(fetchData())
 	}, [dispatch])
 
-	const filteredData = dataToDo ? dataToDo.filter((item) => {
+	useEffect(() => {
+		setItems(dataToDo);
+	}, [dataToDo]);
+
+
+	const filteredData = items ? items.filter((item) => {
 		if (item.status === 'Hot' && !filters.hot) return false;
 		if (item.status === 'Important' && !filters.important) return false;
 		if (item.status === 'Normal' && !filters.normal) return false;
 		return true;
 	}) : [];
+
+	const sensors = useSensors (
+		useSensor(PointerSensor),
+		useSensor(KeyboardSensor, {
+			coordinateGetter: sortableKeyboardCoordinates,
+		})
+	);
+
+	const handleDragEnd = (event) => {
+		const { active, over } = event;
+
+		if (active.id !== over.id) {
+			setItems((items) => {
+				const oldIndex = items.findIndex(item => item.id === active.id);
+				const newIndex = items.findIndex(item => item.id === over.id);
+
+				return arrayMove(items, oldIndex, newIndex);
+			})
+		}
+	}
 
 	return (
 		<div className={styles.page}>
@@ -52,23 +79,34 @@ const MainPage = () => {
 						<BeatLoader color='#2ea19b76' margin={5} size={30} />
 					</div>
 				) : (
-					<>
+					<DndContext
+					sensors={sensors}
+					collisionDetection={closestCenter}
+					onDragEnd={handleDragEnd}
+				>
+					<SortableContext
+						items={filteredData}
+						strategy={verticalListSortingStrategy}
+					>
 						{filteredData.map(item => (
-								<Card
-									key={item.id}
-									id={item.id}
-									date={item.date}
-									status={item.status}
-									title={item.title}
-									comment={item.comment}
-								/>
-							))}
-						<ButtonAddCard />
-					</>
-				)}
-			</div>
+							<SortableItem
+								key={item.id}
+								id={item.id}
+								date={item.date}
+								status={item.status}
+								title={item.title}
+								comment={item.comment}
+							/>
+						))}
+					</SortableContext>
+				</DndContext>
+			)}
+			<ButtonAddCard />
 		</div>
-	)
+	</div>
+)
 }
+
+
 
 export default MainPage
