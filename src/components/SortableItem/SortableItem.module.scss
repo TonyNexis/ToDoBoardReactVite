@@ -1,8 +1,7 @@
 .sortableItem {
-	transition: box-shadow 0.2s, opacity 0.2s;
+	transition: opacity 0.2s;
 }
 
 .sortableItemDragging {
 	opacity: 0.5;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

@@ -90,10 +90,35 @@
 		margin-right: 10px;
 	}
 
-	@media (max-width: 900px) {
-		display: flex;
-		flex-direction: column-reverse;
-		height: 100px;
-		border-bottom: 2px solid rgb(22, 22, 22);
+	// @media (max-width: 900px) {
+	// 	display: flex;
+	// 	flex-direction: column-reverse;
+	// 	height: 100px;
+	// 	border-bottom: 2px solid rgb(22, 22, 22);
+	// }
+
+	@media (max-width: 1330px) {
+		grid-template-columns: 0.1fr 0.25fr 0.7fr;
 	}
+
+	@media (max-width: 950px) {
+		grid-template-columns: 0.1fr 0.15fr 0.7fr;
+		.container {
+			margin-left: 4%;
+		}
+	}
+
+	@media (max-width: 800px) {
+		height: 80px;
+		grid-template-columns: 0.1fr 0.15fr 0.7fr;
+
+		.toggleNavBtn{
+			top: -15px;
+		}
+		.container {
+			margin-left: 4%;
+		}
+	}
+
+
 }
