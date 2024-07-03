@@ -1,7 +1,7 @@
 import { useLocation } from '@tanstack/react-router'
 import ButtonAddCardFooter from '../ButtonAddCardFooter/ButtonAddCardFooter'
 import Clock from './../Clock/Clock'
-import Filter from './../Filter/Filter'
+import Filter from '../Filter/Filter'
 import styles from './Footer.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleShowMenu } from '../../redux/showMenuSlice'
