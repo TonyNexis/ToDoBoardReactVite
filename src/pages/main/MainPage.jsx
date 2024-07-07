@@ -1,25 +1,25 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { BeatLoader } from 'react-spinners'
-import ButtonAddCard from '../../components/ButtonAddCard/ButtonAddCard'
-import Card from '../../components/Card/Card'
-import { fetchData } from '../../redux/dataSlice'
-import FormAddCard from '../FormAddCard/FormAddCard'
-import { useEffect, useState } from 'react'
-import SortableItem from '../../components/SortableItem/SortableItem'
 import {
-	DndContext, 
+	DndContext,
+	KeyboardSensor,
+	PointerSensor,
 	closestCenter,
 	useSensor,
 	useSensors,
-	KeyboardSensor,
-	PointerSensor
-} from "@dnd-kit/core";
+} from '@dnd-kit/core'
 import {
-	arrayMove,
 	SortableContext,
+	arrayMove,
+	sortableKeyboardCoordinates,
 	verticalListSortingStrategy,
-	sortableKeyboardCoordinates
 } from '@dnd-kit/sortable'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { BeatLoader } from 'react-spinners'
+
+import ButtonAddCard from '../../components/ButtonAddCard/ButtonAddCard'
+import SortableItem from '../../components/SortableItem/SortableItem'
+import { fetchData } from '../../redux/dataSlice'
+import FormAddCard from '../FormAddCard/FormAddCard'
 
 import styles from './MainPage.module.scss'
 
@@ -31,40 +31,41 @@ const MainPage = () => {
 	const loadingStatus = useSelector(state => state.dataToDo.loading)
 	const filters = useSelector(state => state.filterCards)
 
-	const [items, setItems] = useState(dataToDo);
+	const [items, setItems] = useState(dataToDo)
 
 	useEffect(() => {
 		dispatch(fetchData())
 	}, [dispatch])
 
 	useEffect(() => {
-		setItems(dataToDo);
-	}, [dataToDo]);
+		setItems(dataToDo)
+	}, [dataToDo])
 
+	const filteredData = items
+		? items.filter(item => {
+				if (item.status === 'Hot' && !filters.hot) return false
+				if (item.status === 'Important' && !filters.important) return false
+				if (item.status === 'Normal' && !filters.normal) return false
+				return true
+			})
+		: []
 
-	const filteredData = items ? items.filter((item) => {
-		if (item.status === 'Hot' && !filters.hot) return false;
-		if (item.status === 'Important' && !filters.important) return false;
-		if (item.status === 'Normal' && !filters.normal) return false;
-		return true;
-	}) : [];
-
-	const sensors = useSensors (
+	const sensors = useSensors(
 		useSensor(PointerSensor),
 		useSensor(KeyboardSensor, {
 			coordinateGetter: sortableKeyboardCoordinates,
 		})
-	);
+	)
 
-	const handleDragEnd = (event) => {
-		const { active, over } = event;
+	const handleDragEnd = event => {
+		const { active, over } = event
 
 		if (active.id !== over.id) {
-			setItems((items) => {
-				const oldIndex = items.findIndex(item => item.id === active.id);
-				const newIndex = items.findIndex(item => item.id === over.id);
+			setItems(items => {
+				const oldIndex = items.findIndex(item => item.id === active.id)
+				const newIndex = items.findIndex(item => item.id === over.id)
 
-				return arrayMove(items, oldIndex, newIndex);
+				return arrayMove(items, oldIndex, newIndex)
 			})
 		}
 	}
@@ -80,33 +81,31 @@ const MainPage = () => {
 					</div>
 				) : (
 					<DndContext
-					sensors={sensors}
-					collisionDetection={closestCenter}
-					onDragEnd={handleDragEnd}
-				>
-					<SortableContext
-						items={filteredData}
-						strategy={verticalListSortingStrategy}
+						sensors={sensors}
+						collisionDetection={closestCenter}
+						onDragEnd={handleDragEnd}
 					>
-						{filteredData.map(item => (
-							<SortableItem
-								key={item.id}
-								id={item.id}
-								date={item.date}
-								status={item.status}
-								title={item.title}
-								comment={item.comment}
-							/>
-						))}
-					</SortableContext>
-				</DndContext>
-			)}
-			<ButtonAddCard />
+						<SortableContext
+							items={filteredData}
+							strategy={verticalListSortingStrategy}
+						>
+							{filteredData.map(item => (
+								<SortableItem
+									key={item.id}
+									id={item.id}
+									date={item.date}
+									status={item.status}
+									title={item.title}
+									comment={item.comment}
+								/>
+							))}
+						</SortableContext>
+					</DndContext>
+				)}
+				<ButtonAddCard />
+			</div>
 		</div>
-	</div>
-)
+	)
 }
-
-
 
 export default MainPage

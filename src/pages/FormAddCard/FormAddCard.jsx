@@ -6,13 +6,22 @@ import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
-import { sendData, updateData, setSendedFalse, setEditedFalse } from '../../redux/dataSlice'
+
+import {
+	sendData,
+	setEditedFalse,
+	setSendedFalse,
+	updateData,
+} from '../../redux/dataSlice'
 import { clearEditCard } from '../../redux/editCardDataSlice'
 import { closeModalCard } from '../../redux/modalCardSlice'
+
 import styles from './FormAddCard.module.scss'
 
 const FormAddCard = () => {
-	const { sending, sended, editing, edited, error } = useSelector(state => state.dataToDo)
+	const { sending, sended, editing, edited, error } = useSelector(
+		state => state.dataToDo
+	)
 	const editCardData = useSelector(state => state.editCardData.data)
 	let [dateError, setDateError] = useState(false)
 	let modalMessage
@@ -80,9 +89,9 @@ const FormAddCard = () => {
 				.then(() => {
 					reset()
 					setDateError(false)
-					dispatch(setEditedFalse());
-					dispatch(closeModalCard());
-					dispatch(clearEditCard());
+					dispatch(setEditedFalse())
+					dispatch(closeModalCard())
+					dispatch(clearEditCard())
 				})
 				.catch(() => {
 					console.log('error')
@@ -93,7 +102,7 @@ const FormAddCard = () => {
 				.then(() => {
 					reset()
 					setDateError(false)
-					dispatch(setSendedFalse());
+					dispatch(setSendedFalse())
 					dispatch(closeModalCard())
 				})
 				.catch(() => {
