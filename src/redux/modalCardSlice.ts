@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+interface ModalCardIsOpen {
+  modalCardIsOpen: boolean;
+}
+
+const initialState: ModalCardIsOpen = {
   modalCardIsOpen: false,
 };
 

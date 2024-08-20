@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux'
-import { openModalCard } from './../../redux/modalCardSlice.js'
+
+import { openModalCard } from './../../redux/modalCardSlice'
 import styles from './ButtonAddCardFooter.module.scss'
 
 const ButtonAddCardFooter = () => {

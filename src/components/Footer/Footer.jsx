@@ -1,26 +1,32 @@
 import { useLocation } from '@tanstack/react-router'
-import ButtonAddCardFooter from '../ButtonAddCardFooter/ButtonAddCardFooter'
-import Clock from './../Clock/Clock'
-import Filter from '../Filter/Filter'
-import styles from './Footer.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { toggleShowMenu } from '../../redux/showMenuSlice'
+import ButtonAddCardFooter from '../ButtonAddCardFooter/ButtonAddCardFooter'
+import Filter from '../Filter/Filter'
+
+import Clock from './../Clock/Clock'
+import styles from './Footer.module.scss'
 
 const Footer = ({ footerBtnToggleMenuRef }) => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch()
 	const location = useLocation()
 
 	const isHomePage = location.pathname === '/'
 
 	const toggleNavBtn = useSelector(state => state.showMenu.MenuIsOpen)
 
-    const onToggleNavBtn = () => {
+	const onToggleNavBtn = () => {
 		dispatch(toggleShowMenu())
-    }
+	}
 
 	return (
 		<div className={styles.footer}>
-			<div ref={footerBtnToggleMenuRef} className={`${styles.toggleNavBtn} ${toggleNavBtn ? styles.open : ''}`} onClick={onToggleNavBtn}>
+			<div
+				ref={footerBtnToggleMenuRef}
+				className={`${styles.toggleNavBtn} ${toggleNavBtn ? styles.open : ''}`}
+				onClick={onToggleNavBtn}
+			>
 				<span></span>
 				<span></span>
 				<span></span>

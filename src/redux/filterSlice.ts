@@ -1,16 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction  } from '@reduxjs/toolkit';
 
-const initialState = {
+interface FilterState {
+    hot: boolean,
+    important: boolean,
+    normal: boolean,
+}
+
+const initialState: FilterState = {
     hot: true,
     important: true,
     normal: true,
 }
 
+const storedState = localStorage.getItem('filterStatusCards');
+const parsedState: FilterState = storedState ? JSON.parse(storedState) : initialState;
+
 const filterStatusCardsSlice = createSlice({
     name: 'filterStatusCards',
-    initialState: JSON.parse(localStorage.getItem('filterStatusCards')) || initialState,
+    initialState: parsedState,
     reducers: {
-        toggleFilter: (state, action) => {
+        toggleFilter: (state, action: PayloadAction<keyof FilterState>) => {
             state[action.payload] = !state[action.payload];
             localStorage.setItem('filterStatusCards', JSON.stringify(state))
         },

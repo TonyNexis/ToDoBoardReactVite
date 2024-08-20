@@ -1,60 +1,25 @@
 {
   "todo": [
     {
-      "id": "611df356-3b18-4edd-9e2a-09149726b06f",
-      "title": "Go to the store",
-      "comment": "Buy banana and apples",
+      "title": "Сходити за хлібом",
+      "comment": "324234234234",
+      "status": "Normal",
+      "date": "07/24/2024 05:25",
+      "id": "05d378f1-330a-4a06-8285-f8b00bc74c73"
+    },
+    {
+      "id": "6a6576ed-00c4-4082-bb89-c0aec69091d3",
+      "title": "Купити білети в кіно",
+      "comment": "",
       "status": "Important",
-      "date": "06/17/2024 04:20"
+      "date": "07/25/2024 00:25"
     },
     {
-      "id": "3ae4a804-ea0b-4639-9ae9-6f2716f1397a",
-      "title": "Do some work",
-      "comment": "asdas dasda sdasd asdadsa dasd asdasd asdas dasd adasd ",
+      "id": "813cbc15-33ab-4f5b-b9c0-ad527195da5a",
+      "title": "Набрати Юлю",
+      "comment": "фівфі вфів фів ф",
       "status": "Hot",
-      "date": "06/17/2024 22:55"
-    },
-    {
-      "id": "ca06285d-2773-4c94-882b-7c7549fa79d8",
-      "title": "test",
-      "comment": "asdasdasdasd",
-      "status": "Normal",
-      "date": "06/26/2024 05:20"
-    },
-    {
-      "title": "Cook dinner",
-      "comment": "asd asda sdad",
-      "status": "Normal",
-      "date": "07/20/2024 00:20",
-      "id": "5e1ee1bc-81bf-4112-a3b8-bcf85cbbec2e"
-    },
-    {
-      "id": "ac97d2a4-1737-4722-affd-9fcbef290c78",
-      "title": "234234",
-      "comment": "234234234 234 234 ",
-      "status": "Normal",
-      "date": "06/24/2024 00:00"
-    },
-    {
-      "id": "2406f689-4f3e-471c-9dd1-32b46393b959",
-      "title": "1",
-      "comment": "1",
-      "status": "Normal",
-      "date": "06/25/2024 00:30"
-    },
-    {
-      "id": "ac720acd-4f9e-4640-84c3-c50f86dcf7db",
-      "title": "123",
-      "comment": "123",
-      "status": "Hot",
-      "date": "07/01/2024 05:25"
-    },
-    {
-      "id": "26f3efc1-07f0-4018-bf71-132de8066f99",
-      "title": "asd",
-      "comment": "asd",
-      "status": "Hot",
-      "date": "07/01/2024 05:25"
+      "date": "07/23/2024 22:00"
     }
   ]
 }

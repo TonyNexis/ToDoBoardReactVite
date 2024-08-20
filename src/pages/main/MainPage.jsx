@@ -54,7 +54,7 @@ const MainPage = () => {
 		useSensor(PointerSensor, {
 			activationConstraint: {
 				delay: 140,
-			}
+			},
 		}),
 		useSensor(KeyboardSensor, {
 			coordinateGetter: sortableKeyboardCoordinates,
